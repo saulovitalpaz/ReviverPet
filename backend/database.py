@@ -3,8 +3,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
+# Determine the project root (where reviverpet.db should live)
+# This finds the parent directory of the 'backend' folder
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+db_path = os.path.join(BASE_DIR, "reviverpet.db")
+
 # Database URL for SQLite (Portable)
-SQLALCHEMY_DATABASE_URL = "sqlite:///./reviverpet.db"
+SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"
 
 # Create engine (check_same_thread=False is needed for SQLite)
 engine = create_engine(

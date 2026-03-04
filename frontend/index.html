@@ -10,278 +10,200 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo-container" onclick="document.getElementById('logo-picker').click()">
-                <img id="brand-logo"
-                    src="data:image/png;base64,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"
-                    alt="Logo Reviver Pet">
-                <input type="file" id="logo-picker" class="hidden" accept="image/*">
-            </div>
-            <div class="header-title">
-                <h1>Reviver Pet - Fisiatria e Reabilitação Veterinária</h1>
-                <p>Prontuário Eletrônico Completo</p>
-            </div>
-        </header>
-
-        <!-- Tabs -->
-        <nav class="tabs">
-            <button class="tab active" onclick="switchTab(0)">📋 Dados do Paciente</button>
-            <button class="tab" onclick="switchTab(1)">🩺 Consultas</button>
-            <button class="tab" onclick="switchTab(2)">📄 Documentos</button>
-            <button class="tab" onclick="switchTab(3)">💊 Tratamentos</button>
-            <button class="tab" id="tab-fisiatria-btn" style="color: var(--primary-dark); font-weight: bold;">🐕
-                Fisiatria & Evolução</button>
-        </nav>
-
-        <!-- Content -->
-        <div class="content">
-            <!-- Tab 1: Dados do Paciente -->
-            <div class="tab-content active" id="tab-0">
-                <div class="patient-card">
-                    <div class="photo-section">
-                        <div class="patient-photo" onclick="document.getElementById('photo-picker').click()">
-                            <img id="patient-img"
-                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23e9ecef' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23adb5bd' font-size='48' font-family='Arial'%3E🐕%3C/text%3E%3C/svg%3E"
-                                alt="Foto">
-                            <div class="photo-overlay">Clique para alterar</div>
-                        </div>
-                        <input type="file" id="photo-picker" class="hidden" accept="image/*">
-                        <button class="btn-secondary" onclick="document.getElementById('photo-picker').click()">
-                            📷 Alterar Foto
-                        </button>
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-field">
-                            <label>Nome do Paciente</label>
-                            <div class="editable" contenteditable="true" id="pat-name">Rex</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Espécie</label>
-                            <div class="editable" contenteditable="true" id="pat-species">Cão</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Raça</label>
-                            <div class="editable" contenteditable="true">Golden Retriever</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Data de Nascimento</label>
-                            <div class="editable" contenteditable="true">15/03/2020</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Sexo</label>
-                            <div class="editable" contenteditable="true">Macho</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Peso Atual (kg)</label>
-                            <div class="editable" contenteditable="true">30</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Tutor(a)</label>
-                            <div class="editable" contenteditable="true">Maria Silva</div>
-                        </div>
-                        <div class="form-field">
-                            <label>Telefone</label>
-                            <div class="editable" contenteditable="true">(33) 98765-4321</div>
-                        </div>
-                    </div>
+    <!-- Nova Landing Page -->
+    <div id="landing-page" class="landing-container">
+        <div class="landing-overlay"></div>
+        <div class="landing-content">
+            <h1 class="landing-title">Bem-vindo</h1>
+            <p class="landing-subtitle">Selecione o modo de acesso</p>
+            <div class="landing-cards">
+                <div class="landing-card" onclick="enterApp('meus-animais')">
+                    <div class="card-icon">🐾</div>
+                    <h3>Meus Animais</h3>
+                    <p>Histórico e evolução dos seus pets</p>
                 </div>
-
-                <div class="section-header">
-                    <h2>🏥 Informações Clínicas</h2>
-                </div>
-
-                <div class="card">
-                    <div class="consultation-field">
-                        <strong>🚨 Alergias Conhecidas</strong>
-                        <div class="editable" contenteditable="true">Nenhuma alergia conhecida</div>
-                    </div>
-                    <div class="consultation-field">
-                        <strong>📌 Condições Crônicas</strong>
-                        <div class="editable" contenteditable="true">Displasia coxofemoral leve</div>
-                    </div>
-                    <div class="consultation-field">
-                        <strong>💉 Vacinas em Dia</strong>
-                        <div class="editable" contenteditable="true">Sim - Última: V10 em 10/10/2024</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab 2: Consultas -->
-            <div class="tab-content" id="tab-1">
-                <div class="section-header">
-                    <h2>📝 Histórico de Consultas</h2>
-                    <button class="btn-primary" onclick="addConsultation()">+ Nova Consulta</button>
-                </div>
-                <input type="text" class="search-bar" placeholder="🔍 Pesquisar consultas..."
-                    oninput="searchConsultations(this.value)">
-                <div id="consultations-container">
-                    <!-- Consultas serão adicionadas aqui -->
-                </div>
-            </div>
-
-            <!-- Tab 3: Documentos -->
-            <div class="tab-content" id="tab-2">
-                <div class="section-header">
-                    <h2>📂 Documentos e Exames</h2>
-                    <button class="btn-primary" onclick="document.getElementById('doc-picker').click()">
-                        + Adicionar Documento
-                    </button>
-                    <input type="file" id="doc-picker" class="hidden" multiple>
-                </div>
-                <div class="documents-grid" id="documents-container">
-                    <!-- Documentos serão adicionados aqui -->
-                </div>
-            </div>
-
-            <!-- Tab 4: Tratamentos -->
-            <div class="tab-content" id="tab-3">
-                <div class="section-header">
-                    <h2>💊 Plano de Tratamento Atual</h2>
-                    <button class="btn-primary" onclick="addTreatment()">+ Novo Tratamento</button>
-                </div>
-                <div id="treatments-container">
-                    <!-- Tratamentos serão adicionados aqui -->
-                </div>
-            </div>
-
-            <!-- Tab 5: Fisiatria -->
-            <div class="tab-content" id="tab-4">
-                <div class="section-header">
-                    <h2>🐕 Fisiatria e Reabilitação</h2>
-                </div>
-
-                <div class="grid-fisiatria">
-                    <!-- Esquerda: Escala de Dor e Marcha -->
-                    <div class="card">
-                        <h3>📋 Anamnese Funcional</h3>
-
-                        <div class="physio-section mt-20">
-                            <strong>Escala de Dor Visual (Glasgow adaptada)</strong>
-                            <div class="pain-scale-container">
-                                <label class="pain-option" title="Sem dor">
-                                    <input type="radio" name="pain" value="0">
-                                    <span class="pain-emoji" style="background-color: #4CAF50;">😀</span>
-                                </label>
-                                <label class="pain-option" title="Dor leve">
-                                    <input type="radio" name="pain" value="1">
-                                    <span class="pain-emoji" style="background-color: #8bc34a;">🙂</span>
-                                </label>
-                                <label class="pain-option" title="Dor moderada-leve">
-                                    <input type="radio" name="pain" value="2">
-                                    <span class="pain-emoji" style="background-color: #ffeb3b;">😐</span>
-                                </label>
-                                <label class="pain-option" title="Dor moderada">
-                                    <input type="radio" name="pain" value="3">
-                                    <span class="pain-emoji" style="background-color: #ffc107;">😟</span>
-                                </label>
-                                <label class="pain-option" title="Dor severa">
-                                    <input type="radio" name="pain" value="4">
-                                    <span class="pain-emoji" style="background-color: #ff9800;">😫</span>
-                                </label>
-                                <label class="pain-option" title="Dor máxima">
-                                    <input type="radio" name="pain" value="5">
-                                    <span class="pain-emoji" style="background-color: #f44336;">😭</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="physio-section mt-20">
-                            <strong>Análise de Marcha</strong>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox" id="gait-claudicacao1"> Claudicação Grau 1</label>
-                                <label><input type="checkbox" id="gait-claudicacao2"> Claudicação Grau 2</label>
-                                <label><input type="checkbox" id="gait-claudicacao3"> Claudicação Grau 3</label>
-                                <label><input type="checkbox" id="gait-claudicacao4"> Claudicação Grau 4</label>
-                                <label><input type="checkbox" id="gait-arrasta"> Arrasta unhas/dorso do pé</label>
-                                <label><input type="checkbox" id="gait-cluzamento"> Cruzamento de membros</label>
-                                <label><input type="checkbox" id="gait-cifose"> Cifose antálgica</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Direita: Goniometria -->
-                    <div class="card">
-                        <h3>📐 Goniometria (Graus °)</h3>
-                        <p style="font-size:12px; color:var(--accent); margin-bottom:15px;">Registre flexão (Flex) e
-                            extensão (Ext) em graus.</p>
-
-                        <div class="gonio-grid">
-                            <!-- Membro Torácico -->
-                            <div class="gonio-box">
-                                <strong>Ombro</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-ombro-flex">
-                                    <input type="number" placeholder="Ext" id="go-ombro-ext">
-                                </div>
-                            </div>
-                            <div class="gonio-box">
-                                <strong>Cotovelo</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-cotovelo-flex">
-                                    <input type="number" placeholder="Ext" id="go-cotovelo-ext">
-                                </div>
-                            </div>
-                            <div class="gonio-box">
-                                <strong>Carpo</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-carpo-flex">
-                                    <input type="number" placeholder="Ext" id="go-carpo-ext">
-                                </div>
-                            </div>
-
-                            <!-- Membro Pélvico -->
-                            <div class="gonio-box">
-                                <strong>Coxofemoral</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-coxo-flex">
-                                    <input type="number" placeholder="Ext" id="go-coxo-ext">
-                                </div>
-                            </div>
-                            <div class="gonio-box">
-                                <strong>Joelho</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-joelho-flex">
-                                    <input type="number" placeholder="Ext" id="go-joelho-ext">
-                                </div>
-                            </div>
-                            <div class="gonio-box">
-                                <strong>Tarso</strong>
-                                <div class="gonio-inputs">
-                                    <input type="number" placeholder="Flex" id="go-tarso-flex">
-                                    <input type="number" placeholder="Ext" id="go-tarso-ext">
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-primary mt-20" style="width:100%;" onclick="saveFisiatriaSession()">Salvar
-                            Sessão Fisiátrica</button>
-                    </div>
-                </div>
-
-                <!-- Gráfico de Evolução -->
-                <div class="card mt-20">
-                    <h3>📈 Evolução Clínica (Arco de Movimento)</h3>
-                    <div style="height: 300px; width: 100%;">
-                        <canvas id="evolutionChart"></canvas>
-                    </div>
+                <div class="landing-card" onclick="enterApp('reviverpet')">
+                    <div class="card-icon">🏥</div>
+                    <h3>ReviverPet</h3>
+                    <p>Dashboard clínico completo</p>
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <strong>Reviver Pet - Fisiatria e Reabilitação Veterinária</strong><br>
-            R. Israel Pinheiro, 2450 - Centro, Gov. Valadares - MG<br>
-            📞 (33) 3271-8855 | 📧 contato@reviverpet.com.br
-        </footer>
     </div>
 
-    <!-- Floating Action Button -->
-    <button class="fab" onclick="saveData()" title="Salvar Prontuário (Ctrl+S)">💾</button>
+    <div class="app-layout" id="main-app" style="display: none;">
+        <!-- Sidebar de Pacientes -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🐾 Pacientes</h2>
+                <input type="text" class="search-bar" id="patient-search" placeholder="Buscar paciente..."
+                    oninput="filterPatients(this.value)">
+                <button class="btn-primary btn-add-patient" onclick="createNewPatient()">+ Novo Paciente</button>
+            </div>
+            <div class="patient-list" id="sidebar-patient-list">
+                <!-- Lista de pacientes carregada via JS -->
+                <div class="patient-item active">
+                    <span class="patient-icon">🐕</span>
+                    <div class="patient-info">
+                        <div class="p-name">Rex</div>
+                        <div class="p-species">Cão - Golden</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-    <!-- Save Status -->
-    <div class="save-status" id="save-status">✓ Salvo</div>
+        <!-- Conteúdo Principal -->
+        <main class="main-wrapper">
+            <div class="container">
+                <!-- Header -->
+                <header class="header">
+                    <div class="logo-container" onclick="document.getElementById('logo-picker').click()">
+                        <img id="brand-logo"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23ffffff' width='100' height='100'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='40'%3E🐾%3C/text%3E%3C/svg%3E"
+                            alt="Logo Reviver Pet">
+                        <input type="file" id="logo-picker" class="hidden" accept="image/*">
+                    </div>
+                    <div class="header-title">
+                        <h1>Reviver Pet</h1>
+                        <p>Fisiatria e Reabilitação Veterinária</p>
+                    </div>
+                </header>
+
+                <!-- Tabs -->
+                <nav class="tabs">
+                    <button class="tab active" onclick="switchTab(0)">📋 Prontuário</button>
+                    <button class="tab" onclick="switchTab(1)">🩺 Consultas</button>
+                    <button class="tab" onclick="switchTab(2)">📄 Documentos</button>
+                    <button class="tab" onclick="switchTab(3)">💊 Tratamentos</button>
+                    <button class="tab" id="tab-fisiatria-btn">🐕 Fisiatria</button>
+                </nav>
+
+                <!-- Content -->
+                <div class="content">
+                    <!-- Tab 1: Dados do Paciente -->
+                    <div class="tab-content active" id="tab-0">
+                        <div class="patient-card">
+                            <div class="photo-section">
+                                <div class="patient-photo" onclick="document.getElementById('photo-picker').click()">
+                                    <img id="patient-img"
+                                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23e9ecef' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23adb5bd' font-size='48' font-family='Arial'%3E🐕%3C/text%3E%3C/svg%3E"
+                                        alt="Foto">
+                                    <div class="photo-overlay">Alterar</div>
+                                </div>
+                                <input type="file" id="photo-picker" class="hidden" accept="image/*">
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label>Nome do Paciente</label>
+                                    <div class="editable" contenteditable="true" id="pat-name"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Espécie</label>
+                                    <div class="editable" contenteditable="true" id="pat-species"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Raça</label>
+                                    <div class="editable" contenteditable="true" id="pat-breed"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Nascimento</label>
+                                    <div class="editable" contenteditable="true" id="pat-birth"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Tutor(a)</label>
+                                    <div class="editable" contenteditable="true" id="pat-tutor"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Telefone</label>
+                                    <div class="editable" contenteditable="true" id="pat-phone"
+                                        oninput="markAsUnsaved()"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="consultation-field">
+                                <strong>🚨 Alergias e Condições</strong>
+                                <div class="editable" contenteditable="true" id="pat-conditions"
+                                    oninput="markAsUnsaved()"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Consultas -->
+                    <div class="tab-content" id="tab-1">
+                        <div class="section-header">
+                            <h2>Histórico Clínico</h2>
+                            <button class="btn-primary" onclick="addConsultation()">+ Nova Consulta</button>
+                        </div>
+                        <div id="consultations-container"></div>
+                    </div>
+
+                    <!-- Tab 3: Documentos -->
+                    <div class="tab-content" id="tab-2">
+                        <div class="section-header">
+                            <h2>Exames e Anexos</h2>
+                            <button class="btn-primary" onclick="document.getElementById('doc-picker').click()">+
+                                Adicionar</button>
+                            <input type="file" id="doc-picker" class="hidden" multiple>
+                        </div>
+                        <div class="documents-grid" id="documents-container"></div>
+                    </div>
+
+                    <!-- Tab 4: Tratamentos -->
+                    <div class="tab-content" id="tab-3">
+                        <div class="section-header">
+                            <h2>Plano Terapêutico</h2>
+                            <button class="btn-primary" onclick="addTreatment()">+ Novo Item</button>
+                        </div>
+                        <div id="treatments-container"></div>
+                    </div>
+
+                    <!-- Tab 5: Fisiatria -->
+                    <div class="tab-content" id="tab-4">
+                        <div class="section-header">
+                            <h2>Evolução Fisiátrica</h2>
+                        </div>
+                        <div class="grid-fisiatria">
+                            <div class="card">
+                                <h3>Escala de Dor</h3>
+                                <div class="pain-scale-container">
+                                    <label class="pain-option"><input type="radio" name="pain" value="0"><span
+                                            class="pain-emoji">😀</span></label>
+                                    <label class="pain-option"><input type="radio" name="pain" value="2"><span
+                                            class="pain-emoji">😐</span></label>
+                                    <label class="pain-option"><input type="radio" name="pain" value="4"><span
+                                            class="pain-emoji">😫</span></label>
+                                    <label class="pain-option"><input type="radio" name="pain" value="5"><span
+                                            class="pain-emoji">😭</span></label>
+                                </div>
+                                <button class="btn-primary mt-20" style="width:100%"
+                                    onclick="saveFisiatriaSession()">Salvar Evolução</button>
+                            </div>
+                            <div class="card">
+                                <h3>Gráfico de Melhora</h3>
+                                <div style="height: 200px;"><canvas id="evolutionChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <strong>Reviver Pet - Gestão de Pacientes</strong><br>
+                    R. Israel Pinheiro, 2450 - Centro, Gov. Valadares - MG
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating UI -->
+    <button class="fab" onclick="saveData()" title="Salvar (Ctrl+S)">💾</button>
+    <div class="save-status" id="save-status">✓ Conectado</div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/app.js"></script>

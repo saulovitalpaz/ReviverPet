@@ -22,10 +22,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Setup directories (Using Windows Documents folder for exams)
-USER_HOME = os.path.expanduser("~")
-DOCUMENTS_BASE = os.path.join(USER_HOME, "Documentos", "exames")
-frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+# Setup directories (Dynamic paths for portability)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCUMENTS_BASE = os.path.join(BASE_DIR, "exames")
+frontend_dir = os.path.join(BASE_DIR, "frontend")
+
 os.makedirs(DOCUMENTS_BASE, exist_ok=True)
 
 # Mount static files
