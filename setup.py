@@ -41,13 +41,13 @@ def setup():
             path = os.path.join(desktop, "Iniciar ReviverPet.lnk")
             target = os.path.join(os.getcwd(), "Iniciar Sistema.bat")
             wDir = os.getcwd()
-            icon = target # Pode ser ajustado depois
+            icon = os.path.join(os.getcwd(), "logo.ico")
 
             shell = Dispatch('WScript.Shell')
             shortcut = shell.CreateShortCut(path)
             shortcut.Targetpath = target
             shortcut.WorkingDirectory = wDir
-            shortcut.IconLocation = target
+            shortcut.IconLocation = icon
             shortcut.save()
             print(f"Atalho criado na área de trabalho: {path}")
         except ImportError:

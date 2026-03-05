@@ -113,6 +113,11 @@ def create_fisiatria_session(patient_id: int, session: schemas.FisiatriaSessionC
     db.refresh(db_session)
     return db_session
 
+@app.get("/api/patients/{patient_id}/fisiatria/", response_model=list[schemas.FisiatriaSession])
+def read_fisiatria_sessions(patient_id: int, db: Session = Depends(get_db)):
+    sessions = db.query(models.FisiatriaSession).filter(models.FisiatriaSession.patient_id == patient_id).all()
+    return sessions
+
 # --- TREATMENTS ENDPOINTS ---
 
 @app.post("/api/patients/{patient_id}/treatments/", response_model=schemas.Treatment)
@@ -132,10 +137,6 @@ def delete_treatment(treatment_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"ok": True}
 
-@app.get("/api/patients/")
-def get_patients(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    patients = db.query(models.Patient).offset(skip).limit(limit).all()
-    return patients
 
 # --- DOCUMENTS ENDPOINTS ---
 

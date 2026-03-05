@@ -23,7 +23,7 @@ class Patient(Base):
 
     # Relationships
     consultations = relationship("Consultation", back_populates="patient", cascade="all, delete-orphan")
-    fisiatria_sessions = relationship("FisiatriaSession", back_populates="patient", cascade="all, delete-orphan")
+    fisiatria = relationship("FisiatriaSession", back_populates="patient", cascade="all, delete-orphan")
     treatments = relationship("Treatment", back_populates="patient", cascade="all, delete-orphan")
     documents = relationship("Document", back_populates="patient", cascade="all, delete-orphan")
 
@@ -37,6 +37,7 @@ class Consultation(Base):
     exam = Column(Text)
     diagnosis = Column(Text)
     conduct = Column(Text)
+    prescription = Column(Text)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     patient = relationship("Patient", back_populates="consultations")
@@ -50,10 +51,11 @@ class FisiatriaSession(Base):
     pain_level = Column(Integer) # 0-5
     gait_analysis = Column(JSON) # e.g. {"claudicacao1": true, "arrasta": false}
     goniometry_data = Column(JSON) # Full object with all joints flex/ext
+    pain_map = Column(JSON) # Coordinates for anatomical markings
     notes = Column(Text)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-    patient = relationship("Patient", back_populates="fisiatria_sessions")
+    patient = relationship("Patient", back_populates="fisiatria")
 
 class Treatment(Base):
     __tablename__ = "treatments"
@@ -64,6 +66,7 @@ class Treatment(Base):
     dosage = Column(String)
     frequency = Column(String)
     duration = Column(String)
+    route = Column(String)
     observations = Column(Text)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 

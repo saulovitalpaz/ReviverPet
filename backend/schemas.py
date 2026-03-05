@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
@@ -23,9 +23,7 @@ class PatientCreate(PatientBase):
 class Patient(PatientBase):
     id: int
     created_at: datetime
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Consultations ---
 class ConsultationBase(BaseModel):
@@ -34,6 +32,7 @@ class ConsultationBase(BaseModel):
     exam: Optional[str] = None
     diagnosis: Optional[str] = None
     conduct: Optional[str] = None
+    prescription: Optional[str] = None
 
 class ConsultationCreate(ConsultationBase):
     pass
@@ -42,9 +41,7 @@ class Consultation(ConsultationBase):
     id: int
     patient_id: int
     created_at: datetime
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Fisiatria Sessions ---
 class FisiatriaSessionBase(BaseModel):
@@ -52,6 +49,7 @@ class FisiatriaSessionBase(BaseModel):
     pain_level: Optional[int] = None
     gait_analysis: Optional[Dict[str, Any]] = None
     goniometry_data: Optional[Dict[str, Any]] = None
+    pain_map: Optional[List[Dict[str, Any]]] = None
     notes: Optional[str] = None
 
 class FisiatriaSessionCreate(FisiatriaSessionBase):
@@ -61,9 +59,7 @@ class FisiatriaSession(FisiatriaSessionBase):
     id: int
     patient_id: int
     created_at: datetime
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Treatments ---
 class TreatmentBase(BaseModel):
@@ -71,6 +67,7 @@ class TreatmentBase(BaseModel):
     dosage: Optional[str] = None
     frequency: Optional[str] = None
     duration: Optional[str] = None
+    route: Optional[str] = None
     observations: Optional[str] = None
 
 class TreatmentCreate(TreatmentBase):
@@ -80,9 +77,7 @@ class Treatment(TreatmentBase):
     id: int
     patient_id: int
     created_at: datetime
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Documents ---
 class DocumentBase(BaseModel):
@@ -97,13 +92,12 @@ class Document(DocumentBase):
     id: int
     patient_id: int
     uploaded_at: datetime
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Aggregated Patient Model ---
 class PatientWithDetails(Patient):
     consultations: List[Consultation] = []
-    fisiatria_sessions: List[FisiatriaSession] = []
+    fisiatria: List[FisiatriaSession] = []
     treatments: List[Treatment] = []
     documents: List[Document] = []
+    model_config = ConfigDict(from_attributes=True)
