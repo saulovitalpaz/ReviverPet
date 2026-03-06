@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text, JSON, Boolean
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 import datetime
 
 class Patient(Base):
@@ -26,6 +26,21 @@ class Patient(Base):
     fisiatria = relationship("FisiatriaSession", back_populates="patient", cascade="all, delete-orphan")
     treatments = relationship("Treatment", back_populates="patient", cascade="all, delete-orphan")
     documents = relationship("Document", back_populates="patient", cascade="all, delete-orphan")
+    metrics = relationship("ExamMetric", back_populates="patient", cascade="all, delete-orphan")
+
+class ExamMetric(Base):
+    __tablename__ = "exam_metrics"
+
+    id = Column(Integer, primary_key=True, index=True)
+    patient_id = Column(Integer, ForeignKey("patients.id"))
+    metric_name = Column(String, index=True) # e.g. "Ureia", "Creatinina", "Peso"
+    value = Column(Float)
+    unit = Column(String) # e.g. "mg/dL", "kg"
+    reference_range = Column(String, nullable=True) # e.g. "15 - 40"
+    date = Column(String) # DD/MM/YYYY
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    patient = relationship("Patient", back_populates="metrics")
 
 class Consultation(Base):
     __tablename__ = "consultations"
@@ -41,6 +56,19 @@ class Consultation(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     patient = relationship("Patient", back_populates="consultations")
+    attachments = relationship("ConsultationAttachment", back_populates="consultation", cascade="all, delete-orphan")
+
+class ConsultationAttachment(Base):
+    __tablename__ = "consultation_attachments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    consultation_id = Column(Integer, ForeignKey("consultations.id"))
+    file_name = Column(String)
+    file_path = Column(String)
+    file_type = Column(String)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    consultation = relationship("Consultation", back_populates="attachments")
 
 class FisiatriaSession(Base):
     __tablename__ = "fisiatria_sessions"
@@ -68,6 +96,7 @@ class Treatment(Base):
     duration = Column(String)
     route = Column(String)
     observations = Column(Text)
+    completed = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     patient = relationship("Patient", back_populates="treatments")

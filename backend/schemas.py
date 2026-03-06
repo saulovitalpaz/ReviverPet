@@ -26,6 +26,20 @@ class Patient(PatientBase):
     model_config = ConfigDict(from_attributes=True)
 
 # --- Consultations ---
+class ConsultationAttachmentBase(BaseModel):
+    file_name: str
+    file_path: str
+    file_type: str
+
+class ConsultationAttachmentCreate(ConsultationAttachmentBase):
+    pass
+
+class ConsultationAttachment(ConsultationAttachmentBase):
+    id: int
+    consultation_id: int
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
 class ConsultationBase(BaseModel):
     date: str
     complaint: Optional[str] = None
@@ -41,6 +55,7 @@ class Consultation(ConsultationBase):
     id: int
     patient_id: int
     created_at: datetime
+    attachments: List[ConsultationAttachment] = []
     model_config = ConfigDict(from_attributes=True)
 
 # --- Fisiatria Sessions ---
@@ -69,6 +84,7 @@ class TreatmentBase(BaseModel):
     duration: Optional[str] = None
     route: Optional[str] = None
     observations: Optional[str] = None
+    completed: Optional[bool] = False
 
 class TreatmentCreate(TreatmentBase):
     pass
@@ -94,10 +110,28 @@ class Document(DocumentBase):
     uploaded_at: datetime
     model_config = ConfigDict(from_attributes=True)
 
+# --- Exam Metrics ---
+class ExamMetricBase(BaseModel):
+    metric_name: str
+    value: float
+    unit: Optional[str] = None
+    reference_range: Optional[str] = None
+    date: str
+
+class ExamMetricCreate(ExamMetricBase):
+    pass
+
+class ExamMetric(ExamMetricBase):
+    id: int
+    patient_id: int
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
 # --- Aggregated Patient Model ---
 class PatientWithDetails(Patient):
     consultations: List[Consultation] = []
     fisiatria: List[FisiatriaSession] = []
     treatments: List[Treatment] = []
     documents: List[Document] = []
+    metrics: List[ExamMetric] = []
     model_config = ConfigDict(from_attributes=True)
