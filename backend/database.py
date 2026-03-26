@@ -6,7 +6,8 @@ import os
 # Determine the project root (where reviverpet.db should live)
 # This finds the parent directory of the 'backend' folder
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-db_path = os.path.join(BASE_DIR, "reviverpet.db")
+DATA_DIR = os.getenv("DATA_DIR", BASE_DIR)
+db_path = os.path.join(DATA_DIR, "reviverpet.db")
 
 # Database URL for SQLite (Portable)
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"

@@ -24,17 +24,11 @@ app.add_middleware(
 
 # Setup directories (Dynamic paths for portability)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCUMENTS_BASE = os.path.join(BASE_DIR, "exames")
-frontend_dir = os.path.join(BASE_DIR, "frontend")
+DATA_DIR = os.getenv("DATA_DIR", BASE_DIR)
+DOCUMENTS_BASE = os.path.join(DATA_DIR, "exames")
+frontend_dir = os.path.join(BASE_DIR, "frontend", "dist")
 
 os.makedirs(DOCUMENTS_BASE, exist_ok=True)
-
-if os.path.exists(frontend_dir):
-    app.mount("/static", StaticFiles(directory=frontend_dir), name="static")
-
-@app.get("/")
-def read_root():
-    return FileResponse(os.path.join(frontend_dir, "index.html"))
 
 # ... PATIENTS, CONSULTATIONS, FISIATRIA, TREATMENTS (omitted for brevity) ...
 
@@ -306,4 +300,20 @@ def delete_exam_metric(metric_id: int, db: Session = Depends(get_db)):
     db.delete(db_metric)
     db.commit()
     return {"ok": True}
+
+
+# --- SPA CATCH-ALL ROUTE ---
+# This must be the last route defined!
+@app.get("/{full_path:path}")
+async def serve_frontend(full_path: str):
+    if not os.path.exists(frontend_dir):
+        return {"message": f"Frontend build not found at {frontend_dir}. Please run 'npm run build'."}
+    
+    file_path = os.path.join(frontend_dir, full_path)
+    if os.path.isfile(file_path):
+        # Serve static assets (JS, CSS, images) directly
+        return FileResponse(file_path)
+    
+    # Fallback to index.html for React Router SPA
+    return FileResponse(os.path.join(frontend_dir, "index.html"))
 
